@@ -12,7 +12,6 @@ public class menu_driver : MonoBehaviour {
 
 	double dpiBasedFontSize;
 	bool isInstructions;
-	int dpiBasedButtonSize;
 	float highscore;
 	
 	public float GetPreferenceString (string prefKey) {
@@ -30,11 +29,11 @@ public class menu_driver : MonoBehaviour {
 		centeredStyle.fontSize = (int) dpiBasedFontSize;
 		centeredStyle.fontStyle = FontStyle.Bold;
 
-		if (GUI.Button (new Rect (Screen.width / 4, Screen.height / 5, Screen.width / 2, Screen.height / 6), "<size="+dpiBasedButtonSize+">Click to Play\nLose your Marbles!</size>"))
+		if (GUI.Button (new Rect (0, 0, Screen.width, Screen.height ), "", centeredStyle))
 			Application.LoadLevel ("Main");
 
 
-		GUI.Label (new Rect (Screen.width / 6, Screen.height / 2, Screen.width /3 * 2, Screen.height / 2), "Joystick Left and Right to Move\n Button to Jump", centeredStyle);
+		GUI.Label (new Rect (Screen.width / 6, Screen.height / 2.6f, Screen.width /3 * 2, Screen.height / 2.6f), "Tap to Start\nJoystick: Move\n Button: Jump", centeredStyle);
 
 		GUI.Label (new Rect (Screen.width / 6, Screen.height / 5 * 4, Screen.width / 4, Screen.height / 6), "<color=#C9C9C9>High Score: " + highscore.ToString("F2") + "</color>", centeredStyle);
 
@@ -64,47 +63,9 @@ public class menu_driver : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		/*
-		// set the desired aspect ratio (the values in this example are
-		// hard-coded for 16:9, but you could make them into public
-		// variables instead so you can set them at design time)
-		float targetaspect = 16.0f / 9.0f;
-		
-		// determine the game window's current aspect ratio
-		float windowaspect = (float)Screen.width / (float)Screen.height;
-		
-		// current viewport height should be scaled by this amount
-		float scaleheight = windowaspect / targetaspect;
-		
-		// obtain camera component so we can modify its viewport
-		Rect rect = camera.rect;
-		float scalewidth;
-		
-		// if scaled height is less than current height, add letterbox
-		if (scaleheight < 1.0f){
-			
-			rect.width = 1.0f;
-			rect.height = scaleheight;
-			rect.x = 0;
-			rect.y = (1.0f - scaleheight) / 2.0f;
-			
-			camera.rect = rect;
-		}else{ // add pillarbox
-			
-			scalewidth = 1.0f / scaleheight;
-			
-			rect.width = scalewidth;
-			rect.height = 1.0f;
-			rect.x = (1.0f - scalewidth) / 2.0f;
-			rect.y = 0;
-			
-			camera.rect = rect;
-		}
-		*/
 
 		rbody1 = selector.GetComponent ("Rigidbody") as Rigidbody;
 		rbody2 = selector2.GetComponent ("Rigidbody") as Rigidbody;
-		dpiBasedButtonSize = (int) setFontBasedOnDpi();
 
 		isInstructions = true;
 
@@ -128,6 +89,7 @@ public class menu_driver : MonoBehaviour {
 			rbody1.velocity = new Vector3 (0, 8F, 0);
 			rbody2.velocity = new Vector3 (0, 8F, 0);
 		}
+
 
 		if (Input.GetKeyDown (KeyCode.Escape)) { 
 			Application.Quit ();

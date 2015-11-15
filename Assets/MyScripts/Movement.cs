@@ -61,7 +61,7 @@ public class Movement : MonoBehaviour {
 			if (GUI.Button (new Rect (Screen.width / 2 - Screen.width / 8, Screen.height / 2, Screen.width / 4, Screen.height / 6), "<size="+(int) dpiBasedFontSize+">Main Menu</size>"))
 				Application.LoadLevel ("Menu");
 		} else {
-			GUI.Label (new Rect (Screen.width / 4, Screen.height / 5 * 4, Screen.width / 2, Screen.height / 6), "Survived for: " + seconds.ToString ("F2") + " seconds.", centeredStyle);
+			GUI.Label (new Rect (Screen.width / 4, Screen.height / 5 * 4, Screen.width / 2, Screen.height / 6), seconds.ToString ("F2"), centeredStyle);
 		}
 	}
 
