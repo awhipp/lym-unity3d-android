@@ -3,11 +3,12 @@ using System.Collections;
 
 public class Movement : MonoBehaviour {
 
+	public Rigidbody rbody;
+	public Transform trans;
 	//public TextMesh timer;
 	public ParticleSystem ps;
 	public Texture jumpTexture;
 	public SphereCollider ballcollider;
-	public Terrain terrain;
 
 	float seconds;
 	bool gameOver;
@@ -15,8 +16,6 @@ public class Movement : MonoBehaviour {
 	bool abilityToTap;
 	double dpiBasedFontSize;
 	float distToGround; 
-	Rigidbody rbody;
-	Transform trans;
 
 	// Use this for initialization
 	void Start () {
@@ -29,7 +28,6 @@ public class Movement : MonoBehaviour {
 		abilityToTap = true;
 		dpiBasedFontSize = setFontBasedOnDpi();
 		distToGround = ballcollider.bounds.extents.y;
-		terrain.treeBillboardDistance = 9000f;
 
 	}
 
