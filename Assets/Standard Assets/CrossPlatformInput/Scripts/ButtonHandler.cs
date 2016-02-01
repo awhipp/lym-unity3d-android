@@ -15,7 +15,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 		void Start(){
 			RectTransform rt = GetComponent ("RectTransform") as RectTransform;
 			sc = player.GetComponent ("SphereCollider") as SphereCollider;
-			rt.position = new Vector3(Screen.width/5,Screen.height/6,0);
+			rt.position = new Vector3(Screen.width/5,Screen.height/2,0);
 			rt.sizeDelta = new Vector2 (Screen.width / 75, Screen.height / 75);
 			rbody = player.GetComponent("Rigidbody") as Rigidbody;
 			distToGround = sc.bounds.extents.y;

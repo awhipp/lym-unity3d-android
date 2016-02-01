@@ -17,7 +17,7 @@ public class MovingMissile : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rbody = GetComponent ("Rigidbody") as Rigidbody;
-		playerTrans = GetComponent ("Transform") as Transform;
+		playerTrans = player.transform;
 
 		missile_speed = 0 - Random.Range (1.0F, 3.0F);
 		rbody.velocity = new Vector3 (missile_speed, 0, 0);
@@ -34,8 +34,8 @@ public class MovingMissile : MonoBehaviour {
 		rbody.velocity = new Vector3 (missile_speed, (rbody.velocity.y)/2.0F, 0);
 
 		float rockPos = playerTrans.position.y + (Random.Range (-0.5f, 0.5f));
-		if (rockPos < 0.25f)
-			rockPos = 0.25f;
+		if (rockPos < 0.75f)
+			rockPos = 0.75f;
 
 		if (rbody.position.x < -11 & missile_speed > -15) {
 			trans.position = new Vector3(Random.Range (11.0F, 16.0F), rockPos, 0);

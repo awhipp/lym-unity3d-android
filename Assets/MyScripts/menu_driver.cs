@@ -7,11 +7,10 @@ public class menu_driver : MonoBehaviour {
 	public GameObject selector2;
 	public Rigidbody rbody1;
 	public Rigidbody rbody2;
-	public Texture devLogo;
+	//	public Texture devLogo;
 	//public Camera camera;
 
 	double dpiBasedFontSize;
-	bool isInstructions;
 	float highscore;
 	
 	public float GetPreferenceString (string prefKey) {
@@ -32,23 +31,24 @@ public class menu_driver : MonoBehaviour {
 		if (GUI.Button (new Rect (0, 0, Screen.width, Screen.height ), "", centeredStyle))
 			Application.LoadLevel ("Main");
 
+		centeredStyle.fontSize = (int) (dpiBasedFontSize * 3/2);
 
-		GUI.Label (new Rect (Screen.width / 6, Screen.height / 2.6f, Screen.width /3 * 2, Screen.height / 2.6f), "Tap to Start\nJoystick: Move\n Button: Jump", centeredStyle);
+		GUI.Label (new Rect (Screen.width / 6, Screen.height / 6, Screen.width /3 * 2, Screen.height / 2.6f), "Lose Your Marbles!", centeredStyle);
 
-		GUI.Label (new Rect (Screen.width / 6, Screen.height / 5 * 4, Screen.width / 4, Screen.height / 6), "<color=#C9C9C9>High Score: " + highscore.ToString("F2") + "</color>", centeredStyle);
+		centeredStyle.fontSize = (int) dpiBasedFontSize;
 
-		GUI.Label (new Rect (Screen.width / 2, Screen.height / 5 * 4, Screen.width/3, Screen.height /2), devLogo);
+		GUI.Label (new Rect (Screen.width / 6, Screen.height / 2.6f, Screen.width /3 * 2, Screen.height / 2.6f), "Tap to Start\n\nJoystick: Move\n\nButton: Jump", centeredStyle);
+
+		GUI.Label (new Rect (Screen.width / 3, Screen.height / 5 * 4, Screen.width / 3, Screen.height / 6), "<color=#C9C9C9>High Score: " + highscore.ToString("F2") + "</color>", centeredStyle);
+
+		//		GUI.Label (new Rect (Screen.width / 2, Screen.height / 5 * 4, Screen.width/3, Screen.height /2), devLogo);
 
 
 	}
 
 	double setFontBasedOnDpi(){
 		double screendpi = Screen.dpi;
-		int fontsize;
-		if (!isInstructions)
-			fontsize = 25;
-		else
-			fontsize = 22;
+		int fontsize = 40;
 
 		if(screendpi <= 120) { //ldpi
 			return fontsize * (3/4);
@@ -67,7 +67,6 @@ public class menu_driver : MonoBehaviour {
 		rbody1 = selector.GetComponent ("Rigidbody") as Rigidbody;
 		rbody2 = selector2.GetComponent ("Rigidbody") as Rigidbody;
 
-		isInstructions = true;
 
 		dpiBasedFontSize = setFontBasedOnDpi();
 

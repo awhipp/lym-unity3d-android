@@ -28,21 +28,9 @@ public class Movement : MonoBehaviour {
 		abilityToTap = true;
 		dpiBasedFontSize = setFontBasedOnDpi();
 		distToGround = ballcollider.bounds.extents.y;
-
 	}
 
 	void OnGUI() {
-		
-		/*
-		if (GUI.RepeatButton (new Rect (Screen.width/4 * 3, Screen.height/4 * 3, Screen.width/5, Screen.height/5), rightTexture))
-			rbody.AddForce (Vector3.right * 15);
-
-		if (GUI.RepeatButton (new Rect (Screen.width/20, Screen.height/4 *3, Screen.width/5, Screen.height/5), leftTexture))
-			rbody.AddForce (Vector3.left * 15);
-
-
-			*/
-
 
 		GUIStyle centeredStyle = GUI.skin.GetStyle("Label");
 		centeredStyle.alignment = TextAnchor.UpperCenter;
@@ -55,13 +43,13 @@ public class Movement : MonoBehaviour {
 		
 		if (gameOver) {
 			DestroyObject(rbody);
-			GUI.Label (new Rect (Screen.width / 4, Screen.height / 5 * 4, Screen.width / 2, Screen.height / 6), "Survived for: " + seconds.ToString ("F2") + " seconds.", centeredStyle);
-			if (GUI.Button (new Rect (Screen.width / 2 - Screen.width / 8, Screen.height / 5, Screen.width / 4, Screen.height / 6), "<size="+(int) dpiBasedFontSize+">Try Again</size>"))
+			GUI.Label (new Rect (Screen.width / 4, Screen.height / 6 , Screen.width / 2, Screen.height / 6), "Survived for: " + seconds.ToString ("F2") + " seconds.", centeredStyle);
+			if (GUI.Button (new Rect (Screen.width / 2 - Screen.width / 8, Screen.height / 4, Screen.width / 4, Screen.height / 6), "<size="+(int) dpiBasedFontSize+">Try Again</size>"))
 				Application.LoadLevel ("Main");
 			if (GUI.Button (new Rect (Screen.width / 2 - Screen.width / 8, Screen.height / 2, Screen.width / 4, Screen.height / 6), "<size="+(int) dpiBasedFontSize+">Main Menu</size>"))
 				Application.LoadLevel ("Menu");
 		} else {
-			GUI.Label (new Rect (Screen.width / 4, Screen.height / 5 * 4, Screen.width / 2, Screen.height / 6), seconds.ToString ("F2"), centeredStyle);
+			GUI.Label (new Rect (Screen.width / 4, Screen.height / 6 , Screen.width / 2, Screen.height / 6), seconds.ToString ("F2"), centeredStyle);
 		}
 	}
 
@@ -116,17 +104,8 @@ public class Movement : MonoBehaviour {
 			}
 
 			if (rbody.velocity.y < 0) {
-				rbody.velocity = new Vector3 (rbody.velocity.x, rbody.velocity.y - 0.25F, rbody.velocity.z);		
+				rbody.velocity = new Vector3 (rbody.velocity.x, rbody.velocity.y - 0.1F, rbody.velocity.z);		
 			}
-
-			/* Mobile and Touch */
-			/*
-			if (Input.touchCount > 0) {
-				// Get movement of the finger since last frame
-				if (Input.GetTouch(0).position.y > Screen.height/5 - 1 &  isGrounded() )
-					rbody.velocity = new Vector3 (rbody.velocity.x, 8F, rbody.velocity.z);		
-
-			}*/
 		}
 	}
 
@@ -136,18 +115,19 @@ public class Movement : MonoBehaviour {
 
 	double setFontBasedOnDpi(){
 		double screendpi = Screen.dpi;
+		int basesize = 30;
 		if (screendpi <= 120) { //ldpi
-			return 20 * (3/4);
+			return basesize * (3/4);
 		}else if( screendpi <= 160 ){ //mdpi
-			return 20;
+			return basesize;
 		}else if( screendpi <= 160 ){ //hdpi
-			return 20 * 1.5;
+			return basesize * 1.5;
 		}else if( screendpi <= 160 ){ //xhdpi
-			return 20 * 2;
+			return basesize * 2;
 		}else if( screendpi <= 160 ){ //xxhdpi
-			return 20 * 2.5;
+			return basesize * 2.5;
 		}else{ //xxxdpi
-			return 20 * 3;
+			return basesize * 3;
 		}
 	}
 
@@ -168,36 +148,3 @@ public class Movement : MonoBehaviour {
 		}
 	}
 }
-
-
-/*
- * 
- * 
- * Legacy Code - 
- * Mouse click 
-
-if (Input.GetMouseButton(0)) {
-	Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-	RaycastHit hit;
-
-	if (Physics.Raycast(ray, out hit)) {
-		if (hit.transform.name == "Left" )rbody.AddForce (Vector3.left * 10);
-		if (hit.transform.name == "Right" )rbody.AddForce (Vector3.right * 10);
-	}
-}
-
-if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
-	// Get movement of the finger since last frame
-	Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-
-	float x = Mathf.Abs(touchDeltaPosition.x);
-	float y = Mathf.Abs (touchDeltaPosition.y);
-	if( x > y ){
-		if (touchDeltaPosition.x > 0){
-			rigidbody.AddForce (Vector3.right * 25);
-		}else{
-			rigidbody.AddForce (Vector3.left * 25);
-		}
-	}
-}
-*/

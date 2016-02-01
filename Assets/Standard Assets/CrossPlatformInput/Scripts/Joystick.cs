@@ -36,8 +36,8 @@ namespace UnityStandardAssets.CrossPlatformInput
         void Start()
         {
 			RectTransform rt = GetComponent ("RectTransform") as RectTransform;
-			rt.position = new Vector3(Screen.width-Screen.width/5,Screen.height/5,0);
-			rt.sizeDelta = new Vector2 (Screen.width / 9, Screen.width / 9);
+			rt.position = new Vector3(Screen.width-Screen.width/5,Screen.height/2,0);
+			rt.sizeDelta = new Vector2 (Screen.width / 10, Screen.width / 10);
 			rbody = player.GetComponent("Rigidbody") as Rigidbody;
             m_StartPos = transform.position;
         }
