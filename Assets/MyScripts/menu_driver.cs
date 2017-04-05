@@ -5,8 +5,8 @@ public class menu_driver : MonoBehaviour {
 
 	public GameObject selector;
 	public GameObject selector2;
-	public Rigidbody rbody1;
-	public Rigidbody rbody2;
+	private Rigidbody rbody1;
+	private Rigidbody rbody2;
 	//	public Texture devLogo;
 	//public Camera camera;
 
